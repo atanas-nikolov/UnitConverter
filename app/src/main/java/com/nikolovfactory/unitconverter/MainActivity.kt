@@ -23,6 +23,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -50,6 +54,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UnitConverter () {
+
+    var inputValue by remember { mutableStateOf("") }
+    var outputValue by remember { mutableStateOf("") }
+    var inputUnit by remember { mutableStateOf("Centimeters") }
+    var outputUnit by remember { mutableStateOf("Meters") }
+    var iExpanded by remember { mutableStateOf(false) }
+    var oExpanded by remember { mutableStateOf(false) }
+    var conversionFactor by remember { mutableStateOf(0.01) }
+
+
+
+
+
+
     Column (
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -59,7 +77,9 @@ fun UnitConverter () {
         Text("Unit Converter")
         Spacer(modifier = Modifier.height(16.dp))
         //                                    onValueChange = {//Here goes what should happened, when the Value of our OutlinedTextFiled changes})
-        OutlinedTextField(value = "", onValueChange = {})
+        OutlinedTextField(value = inputValue, onValueChange = {
+            inputValue = it
+        })
         Spacer(modifier = Modifier.height(16.dp))
         Row {
             Box {
@@ -86,7 +106,7 @@ fun UnitConverter () {
                 }
             }
             // added by me!
-            Spacer(modifier = Modifier.width(48.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             Box {
                 Button(onClick = { /*TODO*/ }) {
                     Text(text = "Select")
